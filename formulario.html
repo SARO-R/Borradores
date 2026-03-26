@@ -1,1 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solar Advisor — Evaluación</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body class="page-app">
 
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon sm">
+          <svg width="22" height="22" viewBox="0 0 36 36" fill="none">
+            <circle cx="18" cy="18" r="8" fill="#FFB800"/>
+            <line x1="18" y1="2" x2="18" y2="6" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="18" y1="30" x2="18" y2="34" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="2" y1="18" x2="6" y2="18" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="30" y1="18" x2="34" y2="18" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="6.34" y1="6.34" x2="9.17" y2="9.17" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="26.83" y1="26.83" x2="29.66" y2="29.66" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="29.66" y1="6.34" x2="26.83" y2="9.17" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="9.17" y1="26.83" x2="6.34" y2="29.66" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span>Solar Advisor</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="Dashboard.html" class="nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.8"/></svg>
+          Dashboard
+        </a>
+        <a href="formulario.html" class="nav-item active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Nueva evaluación
+        </a>
+        <a href="resultados.html" class="nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Resultados
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-chip" id="sidebar-user"></div>
+        <button class="btn-logout" onclick="handleLogout()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Salir
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Evaluación solar</h1>
+          <p class="page-subtitle">Ingresa tus datos para obtener una recomendación personalizada</p>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div id="form-error" class="alert alert-error" style="display:none"></div>
+
+        <!-- Pasos -->
+        <div class="steps-indicator">
+          <div class="step active" id="step-dot-1"><span>1</span><label>Datos</label></div>
+          <div class="step-line"></div>
+          <div class="step" id="step-dot-2"><span>2</span><label>Energía</label></div>
+          <div class="step-line"></div>
+          <div class="step" id="step-dot-3"><span>3</span><label>Solar</label></div>
+        </div>
+
+        <!-- Step 1 -->
+        <div id="step-1" class="step-content">
+          <h3 class="step-title">Información del lugar</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Nombre del usuario</label>
+              <input type="text" id="f-nombre" placeholder="Tu nombre completo"/>
+            </div>
+            <div class="form-group">
+              <label>Tipo de lugar</label>
+              <select id="f-lugar">
+                <option value="">Selecciona...</option>
+                <option value="Casa">🏠 Casa</option>
+                <option value="Apartamento">🏢 Apartamento</option>
+                <option value="Finca">🌿 Finca</option>
+                <option value="Local comercial">🏪 Local comercial</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Municipio / Ciudad</label>
+              <input type="text" id="f-ciudad" placeholder="Ej: Bogotá"/>
+            </div>
+            <div class="form-group">
+              <label>ID de evaluación</label>
+              <input type="text" id="f-id" readonly class="input-readonly"/>
+            </div>
+          </div>
+          <div class="step-actions">
+            <button class="btn btn-primary" onclick="goStep(2)">Siguiente →</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div id="step-2" class="step-content" style="display:none">
+          <h3 class="step-title">Consumo energético</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Consumo mensual (kWh)</label>
+              <input type="number" id="f-consumo" placeholder="Ej: 350" min="1"/>
+            </div>
+            <div class="form-group">
+              <label>Tarifa eléctrica ($/kWh)</label>
+              <input type="number" id="f-tarifa" placeholder="Ej: 650" min="1"/>
+            </div>
+            <div class="form-group span-2">
+              <label>Área disponible del techo (m²)</label>
+              <input type="number" id="f-area" placeholder="Ej: 40" min="1"/>
+            </div>
+          </div>
+          <div class="step-actions">
+            <button class="btn btn-ghost" onclick="goStep(1)">← Atrás</button>
+            <button class="btn btn-primary" onclick="goStep(3)">Siguiente →</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div id="step-3" class="step-content" style="display:none">
+          <h3 class="step-title">Exposición solar</h3>
+          <p class="step-desc">¿Cuántas horas de sol directo recibe el techo de tu propiedad al día?</p>
+
+          <div class="exposure-cards">
+            <div class="exposure-card" id="exp-alta" onclick="selectExposure('alta')">
+              <div class="exposure-icon">☀️</div>
+              <div class="exposure-label">Alta</div>
+              <div class="exposure-desc">+5 horas de sol directo</div>
+            </div>
+            <div class="exposure-card" id="exp-media" onclick="selectExposure('media')">
+              <div class="exposure-icon">⛅</div>
+              <div class="exposure-label">Media</div>
+              <div class="exposure-desc">3 a 5 horas de sol</div>
+            </div>
+            <div class="exposure-card" id="exp-baja" onclick="selectExposure('baja')">
+              <div class="exposure-icon">☁️</div>
+              <div class="exposure-label">Baja</div>
+              <div class="exposure-desc">Menos de 3 horas</div>
+            </div>
+          </div>
+
+          <input type="hidden" id="f-exposicion"/>
+
+          <div class="step-actions">
+            <button class="btn btn-ghost" onclick="goStep(2)">← Atrás</button>
+            <button class="btn btn-primary btn-glow" onclick="handleEvaluation()">
+              ⚡ Analizar ahora
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = JSON.parse(localStorage.getItem('sa_current_user') || 'null');
+      if (!user) { window.location.href = 'index.html'; return; }
+      document.getElementById('sidebar-user').textContent = user.name || user.email;
+      document.getElementById('f-id').value = 'SA-' + Date.now().toString(36).toUpperCase();
+    });
+
+    let currentStep = 1;
+
+    function goStep(n) {
+      const errEl = document.getElementById('form-error');
+      errEl.style.display = 'none';
+
+      if (n > currentStep) {
+        if (currentStep === 1) {
+          if (!document.getElementById('f-nombre').value.trim()) return showErr('Ingresa tu nombre.');
+          if (!document.getElementById('f-lugar').value) return showErr('Selecciona el tipo de lugar.');
+          if (!document.getElementById('f-ciudad').value.trim()) return showErr('Ingresa tu ciudad.');
+        }
+        if (currentStep === 2) {
+          const c = parseFloat(document.getElementById('f-consumo').value);
+          const t = parseFloat(document.getElementById('f-tarifa').value);
+          const a = parseFloat(document.getElementById('f-area').value);
+          if (!c || c <= 0) return showErr('Ingresa un consumo válido.');
+          if (!t || t <= 0) return showErr('Ingresa una tarifa válida.');
+          if (!a || a <= 0) return showErr('Ingresa un área válida.');
+        }
+      }
+
+      document.getElementById('step-' + currentStep).style.display = 'none';
+      document.getElementById('step-dot-' + currentStep).classList.remove('active');
+      document.getElementById('step-dot-' + currentStep).classList.add('done');
+      currentStep = n;
+      document.getElementById('step-' + currentStep).style.display = 'block';
+      document.getElementById('step-dot-' + currentStep).classList.add('active');
+    }
+
+    function showErr(msg) {
+      const el = document.getElementById('form-error');
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    let selectedExposure = '';
+    function selectExposure(val) {
+      selectedExposure = val;
+      document.getElementById('f-exposicion').value = val;
+      ['alta','media','baja'].forEach(e => document.getElementById('exp-'+e).classList.remove('selected'));
+      document.getElementById('exp-'+val).classList.add('selected');
+    }
+  </script>
+</body>
+</html>
