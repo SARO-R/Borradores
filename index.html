@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solar Advisor — Inicio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body class="page-login">
 
+  <!-- Fondo animado -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="login-wrapper">
+
+    <!-- Logo / Brand -->
+    <div class="brand">
+      <div class="brand-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="8" fill="#FFB800"/>
+          <line x1="18" y1="2" x2="18" y2="6" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="18" y1="30" x2="18" y2="34" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="2" y1="18" x2="6" y2="18" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="30" y1="18" x2="34" y2="18" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="6.34" y1="6.34" x2="9.17" y2="9.17" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="26.83" y1="26.83" x2="29.66" y2="29.66" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="29.66" y1="6.34" x2="26.83" y2="9.17" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="9.17" y1="26.83" x2="6.34" y2="29.66" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="brand-name">Solar Advisor</span>
+    </div>
+
+    <!-- Card principal -->
+    <div class="card login-card">
+      <div class="card-header">
+        <h1>Bienvenido de nuevo</h1>
+        <p>Optimiza tu uso de energía solar</p>
+      </div>
+
+      <div id="login-error" class="alert alert-error" style="display:none"></div>
+      <div id="login-success" class="alert alert-success" style="display:none"></div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('login')">Iniciar sesión</button>
+        <button class="tab" onclick="switchTab('register')">Registrarse</button>
+      </div>
+
+      <!-- Login Form -->
+      <div id="tab-login">
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" id="login-email" placeholder="tu@correo.com" />
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="login-password" placeholder="••••••••" />
+        </div>
+        <button class="btn btn-primary btn-full" onclick="handleLogin()">
+          <span>Ingresar</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <!-- Register Form -->
+      <div id="tab-register" style="display:none">
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" id="reg-name" placeholder="Juan Pérez" />
+        </div>
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" id="reg-email" placeholder="tu@correo.com" />
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" id="reg-phone" placeholder="+57 300 000 0000" />
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres" />
+        </div>
+        <button class="btn btn-primary btn-full" onclick="handleRegister()">
+          <span>Crear cuenta</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <p class="login-footer">Solar Advisor · Tecnología verde para un futuro sostenible</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
